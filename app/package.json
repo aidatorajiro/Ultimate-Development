@@ -1,0 +1,15 @@
+{
+  "name": "ultimate-development",
+  "productName": "UltimateDevelopment",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./main.js",
+  "author": {
+    "name": "Torajiro Aida",
+    "email": "kawarusosu@zoho.com",
+    "url": "https://github.com/aidatorajiro"
+  },
+  "license": "MIT",
+  "dependencies": {
+  }
+}
