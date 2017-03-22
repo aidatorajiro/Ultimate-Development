@@ -1,0 +1,22 @@
+{
+  "name": "ultimate-development",
+  "version": "0.0.0",
+  "description": "Ultimate Universal IDE.",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidatorajiro/Ultimate-Development.git"
+  },
+  "author": "Torajiro Aida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aidatorajiro/Ultimate-Development/issues"
+  },
+  "homepage": "https://github.com/aidatorajiro/Ultimate-Development#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13"
+  }
+}
