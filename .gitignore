@@ -45,3 +45,7 @@ main.js.map
 
 .idea
 npm-debug.log.*
+
+app/model_data/
+
+!.gitkeep
