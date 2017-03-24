@@ -1,7 +1,6 @@
 # Ultimate-Development
 Ultimate "Integrated Development Environment".
 
-<<<<<<< HEAD
 Based on electron-react-boilerplate (By C. T. Lin)
 [https://electron.atom.io/](https://electron.atom.io/)
 [https://github.com/chentsulin/electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)
