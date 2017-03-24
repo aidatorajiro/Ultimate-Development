@@ -1,23 +1,31 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import styles from './WordChoiceModule.css';
+import ChoiceList from './ChoiceList';
+import { modulesType } from '../reducers/modules';
 
 let LSTMBaseWorker = require("worker-loader!../worker_scripts/lstm_base_worker");
 
 export default class WordChoiceModule extends Component {
+  prop : {
+    module:          modulesType,
+    addWord:         React.PropTypes.func.isRequired,
+    model:           React.PropTypes.string.isRequired,
+    weights:         React.PropTypes.string.isRequired,
+    metadata:        React.PropTypes.string.isRequired,
+    corpus:          React.PropTypes.string.isRequired,
+    switch_interval: React.PropTypes.number.isRequired,
+    diversity:       React.PropTypes.number.isRequired
+  }
+
   constructor(props) {
     super(props);
-    this.state = {items: [], worker: undefined};
+    this.state = {worker: undefined};
   }
 
   render() {
     return (
-      <div className={styles.choice}>
-        {this.state.items.map(item => (
-          <a className={styles.word} key={item.key}>{item.word}</a>
-        ))}
-      </div>
+      <ChoiceList items={this.props.module.words} />
     );
   }
 
@@ -26,7 +34,9 @@ export default class WordChoiceModule extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.start_worker(nextProps);
+    if (JSON.stringify(this.props) !== JSON.stringify(nextProps)) {
+      this.start_worker(nextProps);
+    }
   }
 
   componentWillUnmount() {
@@ -60,28 +70,11 @@ export default class WordChoiceModule extends Component {
         if (message.data.type == 'debug') {
         }
         if (message.data.type == 'word') {
-          this.setState((prevState) => ({
-            items: prevState.items.concat({word: message.data.data, key: Date.now()}),
-            worker: prevState.worker
-          }));
+          this.props.addWord(this.props.module.id, message.data.data);
         }
       });
 
       return nextState;
     });
   }
-}
-
-WordChoiceModule.propTypes = {
-  model:           React.PropTypes.string.isRequired,
-  weights:         React.PropTypes.string.isRequired,
-  metadata:        React.PropTypes.string.isRequired,
-  corpus:          React.PropTypes.string.isRequired,
-  switch_interval: React.PropTypes.number,
-  diversity:       React.PropTypes.number
-}
-
-WordChoiceModule.defaultProps = {
-  switch_interval: 100,
-  diversity:       1
 }

@@ -1,7 +1,5 @@
 .choice {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    float: right;
     width: 150px;
     height: 100%;
 
@@ -14,7 +12,7 @@
     background: #241b2d;
 }
 
-.choice .word {
+.choice .item {
     font-size: 14px;
     display: block;
     background: #f1eaf9;
@@ -34,7 +32,7 @@
     100% { transform: scale(1, 1); opacity: 1; filter: blur(0px); }
 }
 
-.choice .word:hover {
+.choice .item:hover {
     opacity: 0.6;
     cursor: pointer;
 }
