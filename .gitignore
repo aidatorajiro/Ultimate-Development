@@ -46,6 +46,5 @@ main.js.map
 .idea
 npm-debug.log.*
 
-app/model_data/
-
+app/model_data/manowa_jyukugo_lstm/*
 !.gitkeep
