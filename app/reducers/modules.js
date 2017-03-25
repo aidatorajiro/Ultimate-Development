@@ -1,24 +1,38 @@
 // @flow
-import { ADD_WORD, ADD_MODULE } from '../actions/modules';
+import { ADD_WORD, ADD_MODULE, REMOVE_MODULE, MODIFY_MODULE } from '../actions/modules';
 
-type wordType = {
+export type wordType = {
   id:   number,
   text: string
 };
 
-type wordsType = Array<wordType>;
+export type wordsType = Array<wordType>;
 
-type moduleType = {
-  id:    number,
-  words: wordsType
+export type moduleType = {
+  id:              number,
+  words:           wordsType,
+  model:           string,
+  weights:         string,
+  metadata:        string,
+  corpus:          string,
+  maxlen:          number,
+  switch_interval: number,
+  diversity:       number
 };
 
-type modulesType = Array<moduleType>;
+export type modulesType = Array<moduleType>;
 
 export type actionType = {
-  type:       string,
-  module_id?: number,
-  word?:      wordType
+  type:             string,
+  module_id?:       number,
+  word?:            wordType,
+  model?:           string,
+  weights?:         string,
+  metadata?:        string,
+  corpus?:          string,
+  maxlen?:          number,
+  switch_interval?: number,
+  diversity?:       number
 };
 
 export type modulesStateType = {
@@ -30,8 +44,29 @@ export function module(state?: moduleType, action: actionType) {
     case ADD_MODULE:
       return {
         id:    action.module_id,
-        words: []
+        words: [],
+        model:           action.model,
+        weights:         action.weights,
+        metadata:        action.metadata,
+        corpus:          action.corpus,
+        maxlen:          action.maxlen,
+        switch_interval: action.switch_interval,
+        diversity:       action.diversity
       };
+    case MODIFY_MODULE:
+      if (state.id !== action.module_id) {
+        return state
+      }
+
+      return Object.assign({}, state, {
+        model:           action.model,
+        weights:         action.weights,
+        metadata:        action.metadata,
+        corpus:          action.corpus,
+        maxlen:          action.maxlen,
+        switch_interval: action.switch_interval,
+        diversity:       action.diversity,
+      });
     case ADD_WORD:
       if (state.id !== action.module_id) {
         return state
@@ -49,6 +84,12 @@ export default function modules(state: modulesType = [], action: actionType) {
   switch (action.type) {
     case ADD_MODULE:
       return state.concat(module(undefined, action));
+    case MODIFY_MODULE:
+      return state.map(m =>
+        module(m, action)
+      );
+    case REMOVE_MODULE:
+      return state.filter((m)=>(action.module_id !== m.id));
     case ADD_WORD:
       return state.map(m =>
         module(m, action)

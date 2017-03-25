@@ -7,6 +7,7 @@ import rootReducer from '../reducers';
 
 import * as modulesActions from '../actions/modules';
 import type { modulesStateType } from '../reducers/modules';
+import type { textareaStateType } from '../reducers/textarea';
 
 
 
@@ -36,7 +37,7 @@ const enhancer = composeEnhancers(
   applyMiddleware(thunk, router, logger)
 );
 
-export default function configureStore(initialState?: modulesStateType) {
+export default function configureStore(initialState?: modulesStateType | textareaStateType ) {
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {

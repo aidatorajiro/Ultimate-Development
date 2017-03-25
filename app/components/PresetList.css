@@ -1,0 +1,23 @@
+#list {
+  position: absolute;
+  bottom: 0px;
+  background: #c7d2d8;
+}
+
+.func {
+  font-size: 14px;
+  color: #351b32;
+  display: inline-block;
+  background: transparent;
+  border: 1px #351b32 solid;
+  line-height: 1.5em;
+  margin: 0.5em 0.7em 0.5em 0.7em;
+  padding: 0.25em;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.func:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
