@@ -1,5 +1,5 @@
 // @flow
-import { ADD_TEXT_AREA_VALUE, CHANGE_TEXT_AREA_VALUE } from '../actions/modules';
+import { ADD_TEXT_AREA_VALUE, CHANGE_TEXT_AREA_VALUE } from '../actions/textarea';
 
 export type actionType = {
   type: string,

@@ -23,7 +23,10 @@ export default class Home extends Component {
   render() {
     return (
       <div id={styles.wrapper}>
-        <TextArea value={this.props.textarea} changeTextAreaValue={this.props.changeTextAreaValue} />
+        <TextArea value={this.props.textarea}
+          changeTextAreaValue={this.props.changeTextAreaValue}
+          style={ { width:  `calc(100% - ${this.props.modules.length * 150}px)`,
+                    height: `calc(100% - 44px)` } } />
         <PresetList style={ { width: `calc(100% - ${this.props.modules.length * 150}px)` } }
           functions={ [
             { name : 'Manowa LV.33',
@@ -45,14 +48,17 @@ export default class Home extends Component {
               func: () => { this.props.addManowaJyukugoChoiceModule(0) },
               id: 5 }
           ] }/>
+        <div id={styles.moduleswrapper}>
         {this.props.modules.map(module => (
           <WordChoiceModule
             module={ module }
             addWord={ this.props.addWord }
             modifyModule={ this.props.modifyModule }
             removeModule={ this.props.removeModule }
+            addTextAreaValue={ this.props.addTextAreaValue }
             key={ module.id } />
         ))}
+        </div>
       </div>
     );
   }

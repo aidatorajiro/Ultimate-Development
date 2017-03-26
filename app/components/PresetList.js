@@ -9,7 +9,8 @@ export default class PresetList extends Component {
       id: number,
       name: string,
       func: () => void
-    }>
+    }>,
+    style : { [key: string]: string }
   }
 
   render() {

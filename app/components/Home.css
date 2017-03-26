@@ -2,6 +2,7 @@ html, body {
     margin: 0px;
     padding: 0px;
     color: #333;
+    overflow: hidden;
     font-family: Helvetica , 'Hiragino Kaku Gothic ProN', "ヒラギノ角ゴ Pro W3" , "Yu Gothic" , "游ゴシック" , Meiryo , "メイリオ" , 'MS PGothic' , sans-serif;
 }
 
@@ -13,8 +14,9 @@ html, body {
     width: 100%;
 }
 
-#textarea {
-    background: #f9f9f9;
-    height: 100%;
-    width: calc(100% - 150px);
+#moduleswrapper {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 100%;
 }

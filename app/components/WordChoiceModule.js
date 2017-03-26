@@ -12,7 +12,8 @@ export default class WordChoiceModule extends Component {
     module:       moduleType,
     addWord:      () => void,
     modifyModule: () => void,
-    removeModule: () => void
+    removeModule: () => void,
+    addTextAreaValue: () => void
   }
 
   state_props = () => ({ input_model:           this.props.module.model,
@@ -73,7 +74,7 @@ export default class WordChoiceModule extends Component {
           <button className={`${styles.configbtn} ${styles.btn}`} onClick={ () => { this.setState({config: true}); } }>Config</button>
         </div>
         <div className={ styles.choicelistwrapper }>
-          <ChoiceList items={ this.props.module.words } />
+          <ChoiceList items={ this.props.module.words } onClick={ (item) => { this.props.addTextAreaValue(item.text); } }/>
         </div>
         {(() => {if (this.state.config == true) { return this.config_render(); }})()}
       </div>
