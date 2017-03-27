@@ -37,8 +37,8 @@ class LSTMBase {
     });
 
     (async() => {
-      const response = await fetch(args.corpus);
-      this.text = await response.text();
+      const xhr = await Util.get_data(args.corpus);
+      this.text = xhr.responseText;
       await this.pre_process_function();
       this.generate_words();
     })();
